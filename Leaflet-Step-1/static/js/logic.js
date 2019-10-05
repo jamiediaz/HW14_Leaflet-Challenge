@@ -18,7 +18,10 @@ d3.json(queryUrl, function(data) {
     // Run the onEachFeature function once for each piece of data in the array
     var earthquakes = L.geoJSON(earthquakeData, {
       onEachFeature: onEachFeature
+      
     });
+
+    console.log(earthquakes);
   
     // Sending our earthquakes layer to the createMap function
     createMap(earthquakes);
