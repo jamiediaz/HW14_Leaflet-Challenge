@@ -146,6 +146,38 @@ d3.json(queryUrl, function(data) {
         faults.addTo(myMap)
     })
 
+
+
+    // Also copied  :( 
+
+    var legend = L.control({ position: "bottomright" });
+
+    legend.onAdd = function(map) {
+
+        var legendDiv = L.DomUtil.create('div', 'info legend'),
+
+            labels = ["< 1 ", "1 - 2", "2 - 3", "3 - 4", "4 - 5", "5 + "];
+
+        for (var i = 0; i < labels.length; i++) {
+            legendDiv.innerHTML += '<i style="background:' + getColor(labels[i]) + '"></i> ' +
+                labels[i] + '<br>';
+        }
+
+        return legendDiv;
+    };
+
+    function getColor(mag) {
+        return mag == "5 + " ? "#C90D1A" :
+            mag == "4 - 5" ? "#DA3B18" :
+            mag == "3 - 4" ? "#D76A14" :
+            mag == "2 - 3" ? "#D49910" :
+            mag == "1 - 2" ? "#D1C80C" :
+            "#CEF708"
+
+    };
+
+    legend.addTo(myMap);
+
     // let eqLayers = [];
 
     // eqLayers.push(eq0, eq1, eq2, eq3, eq4, eq5)
