@@ -62,8 +62,8 @@ d3.json(queryUrl, function(data) {
                 fillOpacity: .75,
                 // weight: 1,
                 // opacity: 1,
-                color: "#00ff00",
-                // fillcolor: "#00ff00",
+                color: "#40bf40",
+                fillcolor: "#40bf40",
 
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
@@ -74,7 +74,7 @@ d3.json(queryUrl, function(data) {
             eq1.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
                 // opacity: .5,
-                color: "#99ff99",
+                color: "#73e600",
                 // fillcolor: "#99ff99",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
@@ -85,7 +85,7 @@ d3.json(queryUrl, function(data) {
             eq2.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
                 // opacity: .5,
-                color: "#ffffcc",
+                color: "#e1dc1e",
                 // fillcolor: "#ffffcc",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
@@ -159,7 +159,7 @@ d3.json(queryUrl, function(data) {
             labels = ["< 1 ", "1 - 2", "2 - 3", "3 - 4", "4 - 5", "5 + "];
 
         for (var i = 0; i < labels.length; i++) {
-            legendDiv.innerHTML += '<i style="background:' + getColor(labels[i]) + '"></i> ' +
+            legendDiv.innerHTML += '<i style="background:' + getColor(labels[i]) + '"></i>' +
                 labels[i] + '<br>';
         }
 
@@ -207,12 +207,16 @@ d3.json(queryUrl, function(data) {
         "5 +": eqLayers5
     };
 
+    let layerCollapse = {
+        collapsed: false
+    };
+
     classicmap.addTo(myMap);
 
 
     // console.log(eq0);
 
-    L.control.layers(baseMaps, overlayMaps).addTo(myMap);
+    L.control.layers(baseMaps, overlayMaps, layerCollapse).addTo(myMap);
 
 
 
