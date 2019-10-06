@@ -167,12 +167,12 @@ d3.json(queryUrl, function(data) {
     };
 
     function getColor(mag) {
-        return mag == "5 + " ? "#C90D1A" :
-            mag == "4 - 5" ? "#DA3B18" :
-            mag == "3 - 4" ? "#D76A14" :
-            mag == "2 - 3" ? "#D49910" :
-            mag == "1 - 2" ? "#D1C80C" :
-            "#CEF708"
+        return mag == "5 + " ? "#ff0066" :
+            mag == "4 - 5" ? "#ff5050" :
+            mag == "3 - 4" ? "#ff9999" :
+            mag == "2 - 3" ? "#ffffcc" :
+            mag == "1 - 2" ? "#99ff99" :
+            "#00ff00"
 
     };
 
