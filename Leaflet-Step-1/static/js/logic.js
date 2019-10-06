@@ -62,7 +62,7 @@ d3.json(queryUrl, function(data) {
                 fillOpacity: .75,
                 // weight: 1,
                 // opacity: 1,
-                color: "#40bf40",
+                color: "#00cc00",
                 fillcolor: "#40bf40",
 
                 radius: markerSize(earthquakeList[i][2]),
@@ -74,7 +74,7 @@ d3.json(queryUrl, function(data) {
             eq1.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
                 // opacity: .5,
-                color: "#73e600",
+                color: "#80ff00",
                 // fillcolor: "#99ff99",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
@@ -85,7 +85,7 @@ d3.json(queryUrl, function(data) {
             eq2.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
                 // opacity: .5,
-                color: "#e1dc1e",
+                color: "#ffff00",
                 // fillcolor: "#ffffcc",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
@@ -96,7 +96,7 @@ d3.json(queryUrl, function(data) {
             eq3.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
                 // opacity: .5,
-                color: "#ff9999",
+                color: "#ffbf00",
                 // fillcolor: "#ff9999",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
@@ -107,7 +107,7 @@ d3.json(queryUrl, function(data) {
             eq4.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
                 // opacity: .5,
-                color: "#ff5050",
+                color: "#ff8000",
                 // fillcolor: "#ff5050",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
@@ -118,7 +118,7 @@ d3.json(queryUrl, function(data) {
             eq5.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
                 // opacity: .5,
-                color: "#ff0066",
+                color: "#ff0000",
                 // fillcolor: "#ff0066",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
