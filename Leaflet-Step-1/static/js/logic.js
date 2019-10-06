@@ -19,8 +19,8 @@ let satmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?a
 
 // classicmap.addTo(myMap);
 
-function markerSize(number) {
-    return number * 18000;
+function markerSize(magnitude) {
+    return (Math.exp(magnitude / 1.01 - 0.13)) * 1000;
 }
 
 let queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
@@ -60,9 +60,11 @@ d3.json(queryUrl, function(data) {
 
             eq0.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
-                // opacity: .5,
+                // weight: 1,
+                // opacity: 1,
                 color: "#00ff00",
                 // fillcolor: "#00ff00",
+
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
         };
@@ -125,6 +127,24 @@ d3.json(queryUrl, function(data) {
     };
 
 
+    // this was copied.  :( 
+    var faults = new L.layerGroup();
+
+    faultsURL = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
+
+    d3.json(faultsURL, function(response) {
+        function faultStyle(feature) {
+            return {
+                weight: 2,
+                color: "orange"
+            };
+        }
+
+        L.geoJSON(response, {
+            style: faultStyle
+        }).addTo(faults);
+        faults.addTo(myMap)
+    })
 
     // let eqLayers = [];
 
@@ -146,6 +166,7 @@ d3.json(queryUrl, function(data) {
     };
 
     let overlayMaps = {
+        "Fault Lines": faults,
         "< 1": eqLayers0,
         "1 - 2": eqLayers1,
         "2 - 3": eqLayers2,
@@ -157,9 +178,12 @@ d3.json(queryUrl, function(data) {
     classicmap.addTo(myMap);
 
 
-    console.log(eq0);
+    // console.log(eq0);
 
     L.control.layers(baseMaps, overlayMaps).addTo(myMap);
+
+
+
 
 
 });
