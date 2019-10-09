@@ -44,7 +44,7 @@ d3.json(queryUrl, function(data) {
 
     let feature = data.features;
 
-    // console.log(feature);
+    console.log(earthquakeList);
 
 
     for (i = 0; i < feature.length; i++) {
@@ -56,70 +56,81 @@ d3.json(queryUrl, function(data) {
             feature[i].properties.place
         ]);
 
+        // 0-1
         if (earthquakeList[i][2] < 1) {
 
             eq0.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
-                // weight: 1,
+                weight: .5,
                 // opacity: 1,
-                color: "#00cc00",
-                fillcolor: "#40bf40",
+                color: "#000000",
+                fillColor: "#00cc00",
 
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
         };
 
+        // 1 - 2
         if (earthquakeList[i][2] >= 1 && earthquakeList[i][2] < 2) {
 
             eq1.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
+                weight: .5,
                 // opacity: .5,
-                color: "#80ff00",
-                // fillcolor: "#99ff99",
+                color: "#000000",
+                fillColor: "#80ff00",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
         };
 
+        // 2 - 3
         if (earthquakeList[i][2] >= 2 && earthquakeList[i][2] < 3) {
 
             eq2.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
+                weight: .5,
                 // opacity: .5,
-                color: "#ffff00",
-                // fillcolor: "#ffffcc",
+                color: "#000000",
+                fillColor: "#ffff00",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
         };
 
+        //3 -4 
         if (earthquakeList[i][2] >= 3 && earthquakeList[i][2] < 4) {
 
             eq3.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
+                weight: .5,
                 // opacity: .5,
-                color: "#ffbf00",
-                // fillcolor: "#ff9999",
+                color: "#000000",
+                fillColor: "#ffbf00",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
         };
 
+        // 4 - 5
         if (earthquakeList[i][2] >= 4 && earthquakeList[i][2] < 5) {
 
             eq4.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
+                weight: .5,
                 // opacity: .5,
-                color: "#ff8000",
-                // fillcolor: "#ff5050",
+                color: "#000000",
+                fillColor: "#ff8000",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
         };
 
+        // >=5
         if (earthquakeList[i][2] >= 5) {
 
             eq5.push(L.circle([earthquakeList[i][0], earthquakeList[i][1]], {
                 fillOpacity: .75,
+                weight: .5,
                 // opacity: .5,
-                color: "#ff0000",
-                // fillcolor: "#ff0066",
+                color: "#000000",
+                fillColor: "#ff0000",
                 radius: markerSize(earthquakeList[i][2]),
             }).bindPopup(`${earthquakeList[i][3]}<hr>${earthquakeList[i][4]}`));
         };
@@ -150,33 +161,33 @@ d3.json(queryUrl, function(data) {
 
     // Also copied  :( 
 
-    var legend = L.control({ position: "bottomright" });
+    // var legend = L.control({ position: "bottomright" });
 
-    legend.onAdd = function(map) {
+    // legend.onAdd = function(map) {
 
-        var legendDiv = L.DomUtil.create('div', 'info legend'),
+    //     var legendDiv = L.DomUtil.create('div', 'info legend'),
 
-            labels = ["< 1 ", "1 - 2", "2 - 3", "3 - 4", "4 - 5", "5 + "];
+    //         labels = ["< 1 ", "1 - 2", "2 - 3", "3 - 4", "4 - 5", "5 + "];
 
-        for (var i = 0; i < labels.length; i++) {
-            legendDiv.innerHTML += '<i style="background:' + getColor(labels[i]) + '"></i>' +
-                labels[i] + '<br>';
-        }
+    //     for (var i = 0; i < labels.length; i++) {
+    //         legendDiv.innerHTML += '<i style="background:' + getColor(labels[i]) + '"></i>' +
+    //             labels[i] + '<br>';
+    //     }
 
-        return legendDiv;
-    };
+    //     return legendDiv;
+    // };
 
-    function getColor(mag) {
-        return mag == "5 + " ? "#ff0066" :
-            mag == "4 - 5" ? "#ff5050" :
-            mag == "3 - 4" ? "#ff9999" :
-            mag == "2 - 3" ? "#ffffcc" :
-            mag == "1 - 2" ? "#99ff99" :
-            "#00ff00"
+    // function getColor(mag) {
+    //     return mag == "5 + " ? "#ff0066" :
+    //         mag == "4 - 5" ? "#ff5050" :
+    //         mag == "3 - 4" ? "#ff9999" :
+    //         mag == "2 - 3" ? "#ffffcc" :
+    //         mag == "1 - 2" ? "#99ff99" :
+    //         "#00ff00"
 
-    };
+    // };
 
-    legend.addTo(myMap);
+    // legend.addTo(myMap);
 
     // let eqLayers = [];
 
@@ -207,18 +218,69 @@ d3.json(queryUrl, function(data) {
         "5 +": eqLayers5
     };
 
-    let layerCollapse = {
-        collapsed: false
-    };
+
+
+  
 
     classicmap.addTo(myMap);
 
 
     // console.log(eq0);
 
-    L.control.layers(baseMaps, overlayMaps, layerCollapse).addTo(myMap);
+    L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(myMap);
 
 
+    // create the legend
+    let legend = L.control({
+        position: "bottomright"
+    });
+
+    legend.onAdd = function(map) {
+
+        let legendDiv = L.DomUtil.create('div', 'legend'),
+
+            labels = ["< 1 ", "1 - 2", "2 - 3", "3 - 4", "4 - 5", "5 + "];
+
+        for (var i = 0; i < labels.length; i++) {
+            // legendDiv.innerHTML += '<i style="background:' + getColor(labels[i]) + '"></i>' +
+            legendDiv.innerHTML += '<style = "background": ' + getColor(labels[i]) + '></style>' +
+                labels[i] + '<br>';
+        }
+
+        return legendDiv;
+    };
+
+    function getColor(mag) {
+        if (mag == "5 + ")  
+            return "#ff0000";
+            
+        else if (mag == "4 - 5")
+            return "#ff8000";
+
+        else if (mag == "3 - 4")
+            return "#ffbf00";
+
+        else if (mag == "2 - 3")
+            return "#ffff00";
+
+        else if (mag == "1 - 2")
+            return "#80ff00";
+
+        else 
+            return "#00cc00";
+
+    };
+    //         mag == "4 - 5" ? "#ff5050" :
+    //         mag == "3 - 4" ? "#ff9999" :
+    //         mag == "2 - 3" ? "#ffffcc" :
+    //         mag == "1 - 2" ? "#99ff99" :
+    //         "#00ff00"
+
+    // };
+
+    legend.addTo(myMap);
+
+    
 
 
 
