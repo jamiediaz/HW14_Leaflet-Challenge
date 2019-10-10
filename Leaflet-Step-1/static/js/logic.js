@@ -140,7 +140,7 @@ d3.json(queryUrl, function(data) {
 
 
 
-    // this was copied.  :( 
+    // create faults - this was copied.  :( 
     var faults = new L.layerGroup();
 
     faultsURL = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
@@ -161,41 +161,7 @@ d3.json(queryUrl, function(data) {
 
 
 
-    // Also copied  :( 
-
-    // var legend = L.control({ position: "bottomright" });
-
-    // legend.onAdd = function(map) {
-
-    //     var legendDiv = L.DomUtil.create('div', 'info legend'),
-
-    //         labels = ["< 1 ", "1 - 2", "2 - 3", "3 - 4", "4 - 5", "5 + "];
-
-    //     for (var i = 0; i < labels.length; i++) {
-    //         legendDiv.innerHTML += '<i style="background:' + getColor(labels[i]) + '"></i>' +
-    //             labels[i] + '<br>';
-    //     }
-
-    //     return legendDiv;
-    // };
-
-    // function getColor(mag) {
-    //     return mag == "5 + " ? "#ff0066" :
-    //         mag == "4 - 5" ? "#ff5050" :
-    //         mag == "3 - 4" ? "#ff9999" :
-    //         mag == "2 - 3" ? "#ffffcc" :
-    //         mag == "1 - 2" ? "#99ff99" :
-    //         "#00ff00"
-
-    // };
-
-    // legend.addTo(myMap);
-
-    // let eqLayers = [];
-
-    // eqLayers.push(eq0, eq1, eq2, eq3, eq4, eq5)
-
-    // console.log(eqLayers);
+    // create control panel
 
     let eqLayers0 = L.layerGroup(eq0);
     let eqLayers1 = L.layerGroup(eq1);
@@ -220,14 +186,12 @@ d3.json(queryUrl, function(data) {
         "5 +": eqLayers5
     };
 
-
-
-
+    // load default map
 
     classicmap.addTo(myMap);
 
 
-    // console.log(eq0);
+    // add control panel with options to map. 
 
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(myMap);
 
@@ -264,21 +228,5 @@ d3.json(queryUrl, function(data) {
             d == '4 - 5' ? "#ff8000" :
             "#ff0000";
     }
-
-    // function style(feature) {
-    //     return {
-    //         weight: 1.5,
-    //         opacity: 1,
-    //         fillOpacity: 1,
-    //         radius: 6,
-    //         fillColor: getColor(feature.properties.TypeOfIssue),
-    //         color: "grey"
-
-    // };
-
-    // };
-
-
-
 
 });
