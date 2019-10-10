@@ -137,6 +137,8 @@ d3.json(queryUrl, function(data) {
 
     };
 
+    
+
 
     // this was copied.  :( 
     var faults = new L.layerGroup();
@@ -218,7 +220,7 @@ d3.json(queryUrl, function(data) {
         "5 +": eqLayers5
     };
 
-
+   
 
   
 
@@ -230,55 +232,46 @@ d3.json(queryUrl, function(data) {
     L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(myMap);
 
 
+
+let colorList = {"5 +": "#ff0000",
+                 "4 - 5": "#ff8000",
+                 "3 - 4": "#ffbf00",
+                 "2 - 3": "#ffff00",
+                 "1 - 2": "#80ff00",
+                 "< 1": "#00cc00"};
+
+colorize = function(colorList) {
+
+ let container = document.getElementById('legend');
+ 
+ for (let key in colorList) {
+    let boxContainer = document.createElement("DIV");
+     let box = document.createElement("DIV");
+     let label = document.createElement("SPAN");
+
+     label.innerHTML = key;
+     box.className = "box";
+     box.style.backgroundColor = colorList[key];
+
+     boxContainer.appendChild(box);
+     boxContainer.appendChild(label);
+
+     container.appendChild(boxContainer);
+ }}
+
+//  colorize(colorList);
+
+ 
+
+ 
     // create the legend
     let legend = L.control({
         position: "bottomright"
     });
 
-    legend.onAdd = function(map) {
+    legend.onAdd = colorize(colorList);
 
-        let legendDiv = L.DomUtil.create('div', 'legend'),
-
-            labels = ["< 1 ", "1 - 2", "2 - 3", "3 - 4", "4 - 5", "5 + "];
-
-        for (var i = 0; i < labels.length; i++) {
-            // legendDiv.innerHTML += '<i style="background:' + getColor(labels[i]) + '"></i>' +
-            legendDiv.innerHTML += '<style = "background": ' + getColor(labels[i]) + '></style>' +
-                labels[i] + '<br>';
-        }
-
-        return legendDiv;
-    };
-
-    function getColor(mag) {
-        if (mag == "5 + ")  
-            return "#ff0000";
-            
-        else if (mag == "4 - 5")
-            return "#ff8000";
-
-        else if (mag == "3 - 4")
-            return "#ffbf00";
-
-        else if (mag == "2 - 3")
-            return "#ffff00";
-
-        else if (mag == "1 - 2")
-            return "#80ff00";
-
-        else 
-            return "#00cc00";
-
-    };
-    //         mag == "4 - 5" ? "#ff5050" :
-    //         mag == "3 - 4" ? "#ff9999" :
-    //         mag == "2 - 3" ? "#ffffcc" :
-    //         mag == "1 - 2" ? "#99ff99" :
-    //         "#00ff00"
-
-    // };
-
-    legend.addTo(myMap);
+    // legend.addTo(myMap);
 
     
 
